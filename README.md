@@ -70,27 +70,12 @@ Hosted on a **DigitalOcean Ubuntu VPS**, the system leverages **Xray-core** as t
 
 ---
 
-### Proxy Network  Allowed Sites
-
-![Proxy Allowed Sites](Images/proxy_allowed.png)
-
-**Explanation:** When a user requests access to a permitted website, the DNS query is forwarded through the encrypted tunnel to the Protective DNS resolver (NextDNS). The resolver confirms the domain is safe and returns the IP address. Traffic is routed through the VLESS tunnel to the VPS and onwards to the internet  with the local restricted network seeing only standard TLS traffic on port 443.
-
----
 
 ### Proxy Network  Blocked Sites
 
 ![Proxy Blocked Sites](Images/proxy_blocked.png)
 
 **Explanation:** When a user attempts to access a malicious, phishing, or unsafe domain, the DNS query is forwarded through the encrypted tunnel to NextDNS. The resolver identifies the domain as harmful based on its active blocklists and returns a block response. The malicious content is never loaded, and the block event is logged in the NextDNS dashboard in real time.
-
----
-
-### Proxy Operation Inside a Restricted Network
-
-![Proxy Inside Restricted Network](Images/proxy_inside_restricted.png)
-
-**Explanation:** Within a restricted network, the proxy encapsulates client traffic using the VLESS protocol over TLS port 443. The restricted network's DPI and filtering infrastructure sees only standard HTTPS traffic directed at the VPS domain  unable to distinguish it from legitimate web traffic. DNS queries are resolved via the Protective DNS, while malicious or unsafe domains are blocked before reaching the internet.
 
 ---
 
